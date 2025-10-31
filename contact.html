@@ -3,34 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact - Campus OLX</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <title>Contact — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="brand">Campus OLX</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a class="navlink" href="login.html">Login</a>
+          <a class="navlink" href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
 
-  <main class="container auth-card">
-    <h2>Contact Us</h2>
-    <form id="contact-form" class="form">
-      <label>Name <input type="text" name="name" required></label>
-      <label>Email <input type="email" name="email" required></label>
-      <label>Message <textarea name="message" required rows="4"></textarea></label>
-      <button type="submit">Send</button>
-    </form>
-  </main>
+    <main>
+      <div class="card form">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+          <div class="input"><label>Name</label><input type="text" required></div>
+          <div class="input"><label>Email</label><input type="email" required></div>
+          <div class="input"><label>Message</label><textarea required></textarea></div>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+      </div>
 
-  <footer class="site-footer">
-    <p>© 2025 Campus OLX</p>
-  </footer>
+      <div class="card" style="margin-top:12px">
+        <h3>Demo Chat</h3>
+        <div id="thread" style="max-height:240px;overflow:auto;padding:8px"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="msg" placeholder="Type a message..." style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6edf3">
+          <button class="btn" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>© Campus OLX — Demo frontend</div>
+        <div><a href="index.html" class="linkless">Home</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/send.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

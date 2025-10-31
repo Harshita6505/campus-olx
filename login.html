@@ -3,33 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login - Campus OLX</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <title>Login — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="brand">Campus OLX</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-      <a href="register.html">Register</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a class="navlink" href="login.html">Login</a>
+          <a class="navlink" href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
 
-  <main class="container auth-card">
-    <h2>Login</h2>
-    <form id="login-form" class="form">
-      <label>Email <input type="email" name="email" required></label>
-      <label>Password <input type="password" name="password" required></label>
-      <button type="submit">Login</button>
-      <p class="muted">Don’t have an account? <a href="register.html">Register</a></p>
-    </form>
-  </main>
+    <main class="center">
+      <div class="card form">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="input"><label>Campus Email</label><input id="loginEmail" type="email" required></div>
+          <div class="input"><label>Password</label><input type="password" required></div>
+          <button class="btn" type="submit">Sign In</button>
+        </form>
+        <p class="small" style="margin-top:8px">Don't have an account? <a href="register.html">Register</a></p>
+      </div>
+    </main>
 
-  <footer class="site-footer">
-    <p>© 2025 Campus OLX</p>
-  </footer>
+    <footer class="footer">
+      <div>© Campus OLX — Demo frontend</div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

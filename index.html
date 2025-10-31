@@ -3,50 +3,83 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Campus OLX - Home</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <title>Campus OLX — Home</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="brand">Campus OLX</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a class="navlink" href="login.html">Login</a>
+          <a class="navlink" href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
 
-  <main class="container">
     <section class="hero">
-      <h2>Buy, Sell & Swap on Campus</h2>
-      <p>Find books, gadgets, and accessories from fellow students.</p>
-      <div class="cta">
-        <a class="btn" href="resources.html">Browse Resources</a>
-        <a class="btn outline" href="register.html">Join Now</a>
+      <div class="hero-left">
+        <h1>Find and exchange books, notes, & campus gear</h1>
+        <p class="small">A safe, campus-only marketplace to buy, lend, or exchange resources with fellow students.</p>
+        <div class="card search">
+          <input placeholder="Search books, bags, stationery..." />
+          <select><option>All categories</option><option>Books</option><option>Stationery</option><option>Bags</option></select>
+          <button class="btn">Search (demo)</button>
+        </div>
+        <div style="margin-top:12px">
+          <a class="cta" href="resources.html">Browse Listings</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card center" style="width:260px">
+          <h3>Post your item</h3>
+          <p class="small">Create a listing in under a minute to reach your campus.</p>
+          <a class="btn" href="register.html">Get Started</a>
+        </div>
+
+        <div class="card center" style="width:260px">
+          <h3>Verified campus-only</h3>
+          <p class="small">Sign up using your campus email for a secure community experience.</p>
+        </div>
       </div>
     </section>
 
-    <section class="info-cards">
-      <article class="card">
-        <h3>Simple</h3>
-        <p>Easy posting and searching — no hassle.</p>
-      </article>
-      <article class="card">
-        <h3>Local</h3>
-        <p>Everything within your campus community.</p>
-      </article>
-      <article class="card">
-        <h3>Secure</h3>
-        <p>Verified users and safe transactions.</p>
-      </article>
-    </section>
-  </main>
+    <h3 style="margin-top:18px">Popular resources</h3>
+    <div class="grid">
+      <div class="card item">
+        <img src="images/sample.jpg" alt="Intro to Algorithms">
+        <h4>Introduction to Algorithms — Cormen (3rd Ed.)</h4>
+        <p class="small">Used, good condition. Price: ₹700. Exchange: possible for reference books.</p>
+        <div class="resource-meta"><span class="badge">Books</span><span class="small">Posted 3 days ago</span></div>
+      </div>
 
-  <footer class="site-footer">
-    <p>© 2025 Campus OLX — Built with ❤️</p>
-  </footer>
-</body>
-</html>
+      <div class="card item">
+        <img src="images/sample.jpg" alt="Linear Algebra">
+        <h4>Linear Algebra Notes — Semester 4</h4>
+        <p class="small">PDF + handwritten notes. Great for quick revision. Free.</p>
+        <div class="resource-meta"><span class="badge">Notes</span><span class="small">Posted 1 week ago</span></div>
+      </div>
+
+      <div class="card item">
+        <img src="images/sample.jpg" alt="Backpack">
+        <h4>Campus Backpack — Like new</h4>
+        <p class="small">Spacious backpack with laptop sleeve. Price: ₹900.</p>
+        <div class="resource-meta"><span class="badge">Bags</span><span class="small">Posted 2 days ago</span></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div style="display:flex;justify-content:space-between;align

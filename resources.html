@@ -3,35 +3,97 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Resources - Campus OLX</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <title>Resources — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="brand">Campus OLX</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a class="navlink" href="login.html">Login</a>
+          <a class="navlink" href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
 
-  <main class="container">
-    <h2>Campus Resources</h2>
-    <p>Here are some helpful links and materials for students:</p>
+    <main>
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <div class="card">
+            <h2>Listings</h2>
+            <div id="listings" class="grid">
+              <!-- Pre-populated sample listings -->
+              <div class="card item">
+                <img src="images/sample.jpg" alt="Data Structures">
+                <h4>Data Structures (Theory) — Prof. Notes</h4>
+                <p class="small">Handwritten notes + scanned PDFs. Free to download.</p>
+                <div class="resource-meta"><span class="badge">Notes</span><span class="small">Posted 4 days ago</span></div>
+              </div>
 
-    <ul>
-      <li><a href="#">Second-hand textbooks listings</a></li>
-      <li><a href="#">Electronics exchange forum</a></li>
-      <li><a href="#">Student deals and coupons</a></li>
-    </ul>
-  </main>
+              <div class="card item">
+                <img src="images/sample.jpg" alt="Operating Systems">
+                <h4>Operating Systems — Tanenbaum (2nd Ed.)</h4>
+                <p class="small">Used, minor highlights. Price: ₹450.</p>
+                <div class="resource-meta"><span class="badge">Books</span><span class="small">Posted 6 days ago</span></div>
+              </div>
 
-  <footer class="site-footer">
-    <p>© 2025 Campus OLX</p>
-  </footer>
+              <div class="card item">
+                <img src="images/sample.jpg" alt="Stationery">
+                <h4>Stationery Pack — Pens & Notebooks</h4>
+                <p class="small">Bundle of 5 pens and 3 notebooks. Price: ₹120.</p>
+                <div class="resource-meta"><span class="badge">Stationery</span><span class="small">Posted today</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h3>Filters (demo)</h3>
+            <div class="small">Category: <select><option>All</option><option>Books</option><option>Notes</option><option>Stationery</option></select></div>
+          </div>
+        </div>
+
+        <aside style="width:360px">
+          <div class="card">
+            <h3>Post a new listing</h3>
+            <form id="addListingForm">
+              <div class="input"><label>Title</label><input id="title" required></div>
+              <div class="input"><label>Description</label><textarea id="description" required></textarea></div>
+              <div class="input"><label>Category</label>
+                <select id="category">
+                  <option>Books</option><option>Notes</option><option>Stationery</option><option>Bags</option>
+                </select>
+              </div>
+              <button class="btn" type="submit">Create Listing</button>
+            </form>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <h3>Your account</h3>
+            <p class="small">This demo uses local forms — login/register to access protected features (no backend in demo).</p>
+            <a class="cta" href="login.html">Login</a>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div>© Campus OLX — Demo frontend</div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

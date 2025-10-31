@@ -3,30 +3,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About - Campus OLX</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <title>About — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="brand">Campus OLX</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+        </div>
+        <div class="nav-right">
+          <a class="navlink" href="login.html">Login</a>
+          <a class="navlink" href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
 
-  <main class="container">
-    <h2>About Campus OLX</h2>
-    <p>Campus OLX is a student marketplace designed to help university students buy, sell, and exchange used items within their campus community. It was created to make trading simple, safe, and local.</p>
-    <p>Our goal is to encourage sustainable reuse while making student life easier.</p>
-  </main>
+    <main>
+      <div class="card">
+        <h2>About Campus OLX</h2>
+        <p>This project is a campus-only resource exchange platform inspired by your SRS. It aims to let students post, discover, and exchange books, notes, equipment, and more.</p>
+        <h3>Key goals</h3>
+        <ul>
+          <li>Campus-verified community</li>
+          <li>Simple posting and discovery</li>
+          <li>In-app messaging for safe negotiations</li>
+        </ul>
+        <h3>Built as a demo frontend</h3>
+        <p class="small">This website is a front-end demonstration — no backend. Forms and actions are simulated for demo purposes.</p>
+      </div>
 
-  <footer class="site-footer">
-    <p>© 2025 Campus OLX</p>
-  </footer>
+      <div class="card" style="margin-top:12px">
+        <h3>Team</h3>
+        <p class="small">Prepared by Harshita Grover & Parth Puri — School of Computer Science & Engineering, Manipal University Jaipur.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>© Campus OLX — Demo frontend</div>
+        <div><a href="contact.html" class="linkless">Contact Us</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
