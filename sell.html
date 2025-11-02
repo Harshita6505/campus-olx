@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sell - Campus OLX</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Sell Your Item</h1>
+  </header>
+
+  <form id="sellForm" onsubmit="addProduct(event)">
+    <input type="text" id="productTitle" placeholder="Product Title" required>
+    <input type="number" id="productPrice" placeholder="Price" required>
+    <textarea id="productDescription" placeholder="Description" required></textarea>
+    <input type="text" id="productImage" placeholder="Image URL (optional)">
+    <button type="submit">Post Product</button>
+  </form>
+
+  <footer><a href="index.html">Back to Home</a></footer>
+</body>
+</html>

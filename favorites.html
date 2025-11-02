@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Favorites — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+          <a class="navlink" href="favorites.html">Favorites</a>
+        </div>
+        <div class="nav-right">
+  <a class="navlink" href="login.html">Login</a>
+  <a class="navlink" href="register.html">Register</a>
+
+  <!-- NEW: favorites badge + export/import -->
+  <div class="nav-tools" style="margin-left:8px">
+    <a class="navlink" href="favorites.html" title="Favorites">
+      <span class="fav-badge">♡ <span id="favCount">0</span></span>
+    </a>
+
+    <div class="export-import">
+      <button id="exportBtn" class="navlink" style="background:none;border:1px solid transparent;padding:6px 8px;border-radius:8px">Export</button>
+      <button id="importBtn" class="navlink" style="background:none;border:1px solid transparent;padding:6px 8px;border-radius:8px">Import</button>
+    </div>
+  </div>
+</div>
+
+      </nav>
+    </header>
+
+    <main style="margin-top:18px">
+      <h2>Your Favorites</h2>
+      <div id="favorites-list" class="product-grid card" style="padding:18px"></div>
+      <div style="margin-top:12px"><a href="index.html" class="linkless">← Back to Home</a></div>
+    </main>
+
+    <footer class="footer" style="margin-top:28px">
+      <div>© Campus OLX — Demo frontend</div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    function renderFavorites(){
+      const favs = JSON.parse(localStorage.getItem('favorites_v1') || '[]');
+      const products = JSON.parse(localStorage.getItem('products') || '[]');
+      const container = document.getElementById('favorites-list');
+      if(!favs.length){
+        container.innerHTML = '<p class="small">You have no favorites yet. Click the heart on a product to favorite it.</p>';
+        return;
+      }
+      const items = favs.map(id => ({ id, p: products[id] })).filter(x => x.p);
+      container.innerHTML = items.map(x => `
+        <div class="product-card card" data-id="${x.id}">
+          <button class="favorite-btn active" data-fav="${x.id}">♥</button>
+          <img src="${x.p.img || 'images/sample.jpg'}" alt="${x.p.title}">
+          <h4>${x.p.title}</h4>
+          <p class="small">${(x.p.desc||'')}</p>
+          <div class="resource-meta"><span class="badge">${x.p.category || 'Misc'}</span><strong>₹${x.p.price || '—'}</strong></div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.product-card').forEach(card=>{
+        const id = parseInt(card.getAttribute('data-id'),10);
+        card.addEventListener('click', (e)=> {
+          if(e.target.closest('.favorite-btn')) return;
+          location.href = `product.html?id=${id}`;
+        });
+      });
+
+      container.querySelectorAll('.favorite-btn').forEach(btn=>{
+        const id = parseInt(btn.getAttribute('data-fav'),10);
+        btn.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          // toggle favorite and re-render
+          const favs = JSON.parse(localStorage.getItem('favorites_v1') || '[]');
+          const idx = favs.indexOf(id);
+          if(idx === -1) favs.push(id); else favs.splice(idx,1);
+          localStorage.setItem('favorites_v1', JSON.stringify(favs));
+          renderFavorites();
+        });
+      });
+    }
+
+    renderFavorites();
+  </script>
+</body>
+</html>

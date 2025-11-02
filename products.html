@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product — Campus OLX</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <a class="brand linkless" href="index.html">
+        <div class="logo">CO</div>
+        <div>
+          <div style="font-weight:800">Campus OLX</div>
+          <div class="small">Campus resource exchange</div>
+        </div>
+      </a>
+
+      <nav class="nav topbar">
+        <div class="nav-left nav">
+          <a class="navlink" href="index.html">Home</a>
+          <a class="navlink" href="about.html">About</a>
+          <a class="navlink" href="resources.html">Resources</a>
+          <a class="navlink" href="favorites.html">Favorites</a>
+        </div>
+        <div class="nav-right">
+  <a class="navlink" href="login.html">Login</a>
+  <a class="navlink" href="register.html">Register</a>
+
+  <!-- NEW: favorites badge + export/import -->
+  <div class="nav-tools" style="margin-left:8px">
+    <a class="navlink" href="favorites.html" title="Favorites">
+      <span class="fav-badge">♡ <span id="favCount">0</span></span>
+    </a>
+
+    <div class="export-import">
+      <button id="exportBtn" class="navlink" style="background:none;border:1px solid transparent;padding:6px 8px;border-radius:8px">Export</button>
+      <button id="importBtn" class="navlink" style="background:none;border:1px solid transparent;padding:6px 8px;border-radius:8px">Import</button>
+    </div>
+  </div>
+</div>
+
+      </nav>
+    </header>
+
+    <main style="margin-top:18px">
+      <div id="product-detail" class="card">
+        <p class="small">Loading product…</p>
+      </div>
+      <div style="margin-top:12px"><a href="index.html" class="linkless">← Back to Home</a></div>
+    </main>
+
+    <footer class="footer" style="margin-top:28px">
+      <div>© Campus OLX — Demo frontend</div>
+    </footer>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    // read id from query string and render the product detail
+    function qs(name){ const url = new URL(location.href); return url.searchParams.get(name); }
+
+    function renderProductPage(){
+      const id = parseInt(qs('id'),10);
+      const products = JSON.parse(localStorage.getItem('products') || '[]');
+      const container = document.getElementById('product-detail');
+      if(Number.isNaN(id) || !products[id]){
+        container.innerHTML = '<p class="small">Product not found. It may have been removed.</p>';
+        return;
+      }
+      const p = products[id];
+      container.innerHTML = `
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:280px"><img src="${p.img || 'images/sample.jpg'}" alt="${p.title}" style="width:100%;border-radius:10px;max-height:420px;object-fit:cover"></div>
+          <div style="flex:1;min-width:260px">
+            <h2>${escapeHtml(p.title)}</h2>
+            <div class="resource-meta"><span class="badge">${escapeHtml(p.category || 'Misc')}</span><strong style="margin-left:8px">₹${p.price || '—'}</strong></div>
+            <p class="small" style="margin-top:12px">${escapeHtml(p.desc)}</p>
+            <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+              <button id="prodContactBtn" class="btn">Contact seller</button>
+              <button id="prodFavBtn" class="favorite-btn">${isFavorited(id) ? '♥ Favorited' : '♡ Favorite'}</button>
+            </div>
+
+            <div id="prodContactArea" style="margin-top:12px;display:none">
+              <div id="prodThread" class="contact-thread"></div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <input id="prodMsg" placeholder="Write a message..." style="flex:1;padding:8px;border-radius:8px;border:1px solid #e6edf3">
+                <button id="prodSend" class="btn">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // wire up buttons (functions from js/script.js are available)
+      document.getElementById('prodFavBtn').addEventListener('click', ()=>{
+        toggleFavorite(id);
+        document.getElementById('prodFavBtn').innerText = isFavorited(id) ? '♥ Favorited' : '♡ Favorite';
+      });
+
+      document.getElementById('prodContactBtn').addEventListener('click', ()=>{
+        const area = document.getElementById('prodContactArea');
+        area.style.display = (area.style.display === 'none' || area.style.display === '') ? 'block' : 'none';
+        loadProductThread(id);
+      });
+
+      document.getElementById('prodSend').addEventListener('click', ()=>{
+        const text = document.getElementById('prodMsg').value.trim();
+        if(!text) return alert('Type a message.');
+        const key = `contact_thread_${id}`;
+        const msgs = JSON.parse(localStorage.getItem(key) || '[]');
+        msgs.push({from:'You', text, at: new Date().toISOString()});
+        localStorage.setItem(key, JSON.stringify(msgs));
+        document.getElementById('prodMsg').value='';
+        loadProductThread(id);
+        setTimeout(()=> {
+          const msgs2 = JSON.parse(localStorage.getItem(key) || '[]');
+          msgs2.push({from:'Seller', text:'Thanks — demo reply', at:new Date().toISOString()});
+          localStorage.setItem(key, JSON.stringify(msgs2));
+          loadProductThread(id);
+        }, 600);
+      });
+    }
+
+    function loadProductThread(productId){
+      const key = `contact_thread_${productId}`;
+      const msgs = JSON.parse(localStorage.getItem(key) || '[]');
+      const thread = document.getElementById('prodThread');
+      if(!thread) return;
+      thread.innerHTML = msgs.map(m => `<div class="card" style="padding:8px;margin-bottom:6px"><strong>${escapeHtml(m.from)}:</strong><div class="small">${escapeHtml(m.text)}</div></div>`).join('');
+    }
+
+    // small helpers re-used from script.js (keep in sync)
+    function escapeHtml(str){ return String(str || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+    function isFavorited(id){ try { return (JSON.parse(localStorage.getItem('favorites_v1') || '[]').indexOf(id) !== -1); } catch(e){ return false; } }
+    function toggleFavorite(id){ try { const key='favorites_v1'; const favs = JSON.parse(localStorage.getItem(key) || '[]'); const i = favs.indexOf(id); if(i===-1) favs.push(id); else favs.splice(i,1); localStorage.setItem(key, JSON.stringify(favs)); } catch(e){} }
+
+    // run render
+    renderProductPage();
+  </script>
+</body>
+</html>
