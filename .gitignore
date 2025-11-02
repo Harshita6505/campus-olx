@@ -1,0 +1,5 @@
+
+# backend/node modules & env
+campus-olx-backend/node_modules/
+campus-olx-backend/.env
+campus-olx-backend/uploads/
